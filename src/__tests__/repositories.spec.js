@@ -1,6 +1,6 @@
 const request = require("supertest");
 const app = require("../app");
-const { validate } = require("uuid");
+const { isUuid } = require("uuidv4");
 
 describe("Repositories", () => {
   it("should be able to create a new repository", async () => {
@@ -12,7 +12,7 @@ describe("Repositories", () => {
         techs: ["Node", "Express", "TypeScript"]
       });
 
-    expect(validate(response.body.id)).toBe(true);
+    expect(isUuid(response.body.id)).toBe(true);
 
     expect(response.body).toMatchObject({
       url: "https://github.com/Rocketseat/umbriel",
@@ -63,7 +63,7 @@ describe("Repositories", () => {
         techs: ["React", "ReactNative", "TypeScript", "ContextApi"]
       });
 
-    expect(validate(response.body.id)).toBe(true);
+    expect(isUuid(response.body.id)).toBe(true);
 
     expect(response.body).toMatchObject({
       url: "https://github.com/Rocketseat/unform",
