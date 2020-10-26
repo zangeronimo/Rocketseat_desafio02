@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const { v4: uuid, validate } = require('uuid');
+const { uuid, isUuid } = require('uuidv4');
 
 const app = express();
 
@@ -13,7 +13,7 @@ const repositories = [];
 function validateId(request, response, next) {
   const { id } = request.params;
 
-  if (!validate(id)) {
+  if (!isUuid(id)) {
     return response.status(400).json({ error: "Invalid ID informed!"});
   }
 
